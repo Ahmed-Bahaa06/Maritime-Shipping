@@ -1,0 +1,11 @@
+C:\Users\compumarts\Downloads\Maritime Shipping System\Maritime Shipping\obj\Debug\Maritime Shipping.csproj.AssemblyReference.cache
+C:\Users\compumarts\Downloads\Maritime Shipping System\Maritime Shipping\obj\Debug\Maritime_Shipping.Properties.Resources.resources
+C:\Users\compumarts\Downloads\Maritime Shipping System\Maritime Shipping\obj\Debug\Maritime Shipping.csproj.GenerateResource.cache
+C:\Users\compumarts\Downloads\Maritime Shipping System\Maritime Shipping\obj\Debug\Maritime Shipping.csproj.CoreCompileInputs.cache
+C:\Users\compumarts\Downloads\Maritime Shipping System\Maritime Shipping\bin\Debug\Maritime Shipping.exe.config
+C:\Users\compumarts\Downloads\Maritime Shipping System\Maritime Shipping\bin\Debug\Maritime Shipping.exe
+C:\Users\compumarts\Downloads\Maritime Shipping System\Maritime Shipping\bin\Debug\Maritime Shipping.pdb
+C:\Users\compumarts\Downloads\Maritime Shipping System\Maritime Shipping\obj\Debug\Maritime Shipping.exe
+C:\Users\compumarts\Downloads\Maritime Shipping System\Maritime Shipping\obj\Debug\Maritime Shipping.pdb
+C:\Users\compumarts\Downloads\Maritime Shipping System\Maritime Shipping\obj\Debug\Maritime Shipping.exe.config
+C:\Users\compumarts\Downloads\Maritime Shipping System\Maritime Shipping\obj\Debug\MaritimeShippingManagementSystem.Form1.resources
