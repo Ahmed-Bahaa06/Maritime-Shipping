@@ -613,6 +613,138 @@ namespace MaritimeShippingManagementSystem
             return ExecuteSelect(query);
         }
 
+        // ========================= INQUIRIES =========================
+
+        /// <summary>
+        /// Inquiry 1
+        /// </summary>
+            public DataTable GetMostTransportedCargoType()
+            {
+                string query =
+                @"SELECT TOP 1
+                    C.CARGO_TYPE,
+                    COUNT(*) AS ContainerCount
+                FROM CONTAINER C
+                INNER JOIN CARRIES CA
+                    ON C.SERIAL_NUMBER = CA.SERIAL_NUMBER
+                GROUP BY C.CARGO_TYPE
+                ORDER BY ContainerCount DESC";
+
+                return ExecuteSelect(query);
+            }
+
+            /// <summary>
+            /// Inquiry 2
+            /// </summary>
+            public DataTable GetVesselsWithoutVoyagesLastMonth()
+            {
+                string query =
+                @"SELECT
+                    V.VESSEL_ID,
+                    V.REGISTRATION
+                  FROM VESSEL V
+                  WHERE V.VESSEL_ID NOT IN
+                  (
+                      SELECT DISTINCT VO.VESSEL_ID
+                      FROM VOYAGE VO
+                      WHERE VO.DEPARTURE_DATE >= DATEADD(MONTH,-1,GETDATE())
+                         OR VO.ARRIVAL_DATE >= DATEADD(MONTH,-1,GETDATE())
+                  )";
+
+                return ExecuteSelect(query);
+            }
+
+            /// <summary>
+            /// Inquiry 3
+            /// </summary>
+            public DataTable GetTopCaptainLastMonth()
+            {
+                string query =
+                @"SELECT TOP 1
+                    C.CREW_NAME,
+                    COUNT(*) AS VoyageCount
+                  FROM HAS H
+                  INNER JOIN CREWMEMBER C
+                    ON H.CREW_ID = C.CREW_ID
+                  INNER JOIN VOYAGE V
+                    ON H.VOYAGE_ID = V.VOYAGE_ID
+                  WHERE H.ROLE = 'Captain'
+                    AND V.DEPARTURE_DATE >= DATEADD(MONTH,-1,GETDATE())
+                  GROUP BY C.CREW_NAME
+                  ORDER BY VoyageCount DESC";
+
+                return ExecuteSelect(query);
+            }
+
+            /// <summary>
+            /// Inquiry 4
+            /// </summary>
+            public DataTable GetClientsWithoutShipmentsLastMonth()
+            {
+                string query =
+                @"SELECT
+                    CL.CLIENT_ID,
+                    CL.CLIENT_NAME
+                  FROM CLIENT CL
+                  WHERE CL.CLIENT_ID NOT IN
+                  (
+                      SELECT DISTINCT C.CLIENT_ID
+                      FROM CONTAINER C
+                      INNER JOIN CARRIES CA
+                        ON C.SERIAL_NUMBER = CA.SERIAL_NUMBER
+                      INNER JOIN VOYAGE V
+                        ON CA.VOYAGE_ID = V.VOYAGE_ID
+                      WHERE V.DEPARTURE_DATE >= DATEADD(MONTH,-1,GETDATE())
+                  )";
+
+                return ExecuteSelect(query);
+            }
+
+            /// <summary>
+            /// Inquiry 5
+            /// </summary>
+            public DataTable GetContainersDockedAtPortsLastMonth()
+            {
+                string query =
+                @"SELECT DISTINCT
+                    P.PORT_NAME,
+                    C.SERIAL_NUMBER,
+                    C.CARGO_TYPE
+                  FROM PORT P
+                  INNER JOIN VOYAGE V
+                    ON P.PORT_ID = V.DEST_PORT_ID
+                  INNER JOIN CARRIES CA
+                    ON V.VOYAGE_ID = CA.VOYAGE_ID
+                  INNER JOIN CONTAINER C
+                    ON CA.SERIAL_NUMBER = C.SERIAL_NUMBER
+                  WHERE V.ARRIVAL_DATE >= DATEADD(MONTH,-1,GETDATE())
+                  ORDER BY P.PORT_NAME";
+
+                return ExecuteSelect(query);
+            }
+
+            /// <summary>
+            /// Inquiry 6
+            /// </summary>
+            public DataTable GetVesselContainerTotalsLastMonth()
+            {
+                string query =
+                @"SELECT
+                    VE.REGISTRATION,
+                    COUNT(CA.SERIAL_NUMBER) AS TotalContainers
+                  FROM VESSEL VE
+                  LEFT JOIN VOYAGE V
+                    ON VE.VESSEL_ID = V.VESSEL_ID
+                  LEFT JOIN CARRIES CA
+                    ON V.VOYAGE_ID = CA.VOYAGE_ID
+                  WHERE V.DEPARTURE_DATE >= DATEADD(MONTH,-1,GETDATE())
+                  GROUP BY VE.REGISTRATION
+                  ORDER BY TotalContainers DESC";
+
+                return ExecuteSelect(query);
+            }
+
+
         // ========================= HELPER METHODS =========================
 
         private void ExecuteNonQuery(string query, params SqlParameter[] parameters)

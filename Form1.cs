@@ -696,5 +696,56 @@ namespace MaritimeShippingManagementSystem
         {
             return ((DateTimePicker)updateControls[key]).Value;
         }
+
+        private void btnRunInquiry_Click(object sender , EventArgs e)
+        {
+            try
+            {
+                DataTable table = null;
+
+                switch (cmbInquiry.SelectedIndex)
+                {
+                    case 0:
+                        table = db.GetMostTransportedCargoType();
+                        break;
+
+                    case 1:
+                        table = db.GetVesselsWithoutVoyagesLastMonth();
+                        break;
+
+                    case 2:
+                        table = db.GetTopCaptainLastMonth();
+                        break;
+
+                    case 3:
+                        table = db.GetClientsWithoutShipmentsLastMonth();
+                        break;
+
+                    case 4:
+                        table = db.GetContainersDockedAtPortsLastMonth();
+                        break;
+
+                    case 5:
+                        table = db.GetVesselContainerTotalsLastMonth();
+                        break;
+                }
+
+                dgvInquiry.DataSource = table;
+
+                lblStatus.Text =
+                    "Inquiry executed successfully";
+
+                lblRecordCount.Text =
+                    "Records: " + table.Rows.Count;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Database Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
     }
 }

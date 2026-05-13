@@ -1,4 +1,6 @@
-﻿namespace MaritimeShippingManagementSystem
+﻿using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
+namespace MaritimeShippingManagementSystem
 {
     partial class Form1
     {
@@ -140,6 +142,100 @@
             this.lstTables.Size = new System.Drawing.Size(967, 664);
             this.lstTables.TabIndex = 0;
             this.lstTables.SelectedIndexChanged += new System.EventHandler(this.lstTables_SelectedIndexChanged);
+
+            // ========================= TAB INQUIRY =========================
+
+            this.tabInquiry = new System.Windows.Forms.TabPage();
+            this.pnlInquiryTop = new System.Windows.Forms.Panel();
+            this.cmbInquiry = new System.Windows.Forms.ComboBox();
+            this.btnRunInquiry = new System.Windows.Forms.Button();
+            this.dgvInquiry = new System.Windows.Forms.DataGridView();
+
+            this.tabInquiry.SuspendLayout();
+            this.pnlInquiryTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)
+            (this.dgvInquiry)).BeginInit();
+
+            this.tabInquiry.Text = "📌 Inquiry";
+            this.tabInquiry.BackColor =
+                System.Drawing.Color.White;
+
+            this.tabInquiry.Controls.Add(this.dgvInquiry);
+            this.tabInquiry.Controls.Add(this.pnlInquiryTop);
+            this.tabInquiry.Size = new System.Drawing.Size(992, 626);
+            this.dgvInquiry.Location = new System.Drawing.Point(0, 70);
+
+            // pnlInquiryTop
+            this.pnlInquiryTop.Dock =
+                System.Windows.Forms.DockStyle.Top;
+
+            this.pnlInquiryTop.Height = 70;
+
+            this.pnlInquiryTop.Controls.Add(this.cmbInquiry);
+            this.pnlInquiryTop.Controls.Add(this.btnRunInquiry);
+
+            // cmbInquiry
+            this.cmbInquiry.DropDownStyle =
+                System.Windows.Forms.ComboBoxStyle.DropDownList;
+
+            this.cmbInquiry.FormattingEnabled = true;
+
+            this.cmbInquiry.Items.AddRange(new object[]
+            {
+                "1. Most Transported Cargo Type",
+                "2. Vessels Without Voyages Last Month",
+                "3. Captain With Most Voyages Last Month",
+                "4. Clients Without Shipments Last Month",
+                "5. Containers Docked At Ports Last Month",
+                "6. Vessel Container Totals Last Month"
+            });
+
+            this.cmbInquiry.Location =
+                new System.Drawing.Point(20, 20);
+
+            this.cmbInquiry.Size =
+                new System.Drawing.Size(500, 29);
+
+            // btnRunInquiry
+            this.btnRunInquiry.BackColor =
+                System.Drawing.Color.FromArgb(46, 134, 171);
+
+            this.btnRunInquiry.FlatStyle =
+                System.Windows.Forms.FlatStyle.Flat;
+
+            this.btnRunInquiry.ForeColor =
+                System.Drawing.Color.White;
+
+            this.btnRunInquiry.Location =
+                new System.Drawing.Point(550, 15);
+
+            this.btnRunInquiry.Size =
+                new System.Drawing.Size(170, 38);
+
+            this.btnRunInquiry.Text = "RUN INQUIRY";
+
+            this.btnRunInquiry.Click +=
+                new System.EventHandler(this.btnRunInquiry_Click);
+
+            // dgvInquiry
+
+            this.dgvInquiry.AllowUserToAddRows = false;
+            this.dgvInquiry.AllowUserToDeleteRows = false;
+
+            this.dgvInquiry.AutoSizeColumnsMode =
+                System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+
+            this.dgvInquiry.BackgroundColor =
+                System.Drawing.Color.White;
+
+            this.dgvInquiry.Dock =
+                System.Windows.Forms.DockStyle.Fill;
+
+            this.dgvInquiry.ReadOnly = true;
+
+            this.dgvInquiry.SelectionMode =
+                System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+
             // 
             // tabMain
             // 
@@ -147,6 +243,7 @@
             this.tabMain.Controls.Add(this.tabInsert);
             this.tabMain.Controls.Add(this.tabUpdate);
             this.tabMain.Controls.Add(this.tabJoin);
+            this.tabMain.Controls.Add(this.tabInquiry);
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabMain.Font = new System.Drawing.Font("Segoe UI", 9.5F);
             this.tabMain.Location = new System.Drawing.Point(0, 0);
@@ -162,7 +259,7 @@
             this.tabView.Controls.Add(this.pnlViewBottom);
             this.tabView.Location = new System.Drawing.Point(4, 30);
             this.tabView.Name = "tabView";
-            this.tabView.Size = new System.Drawing.Size(221, 630);
+            this.tabView.Size = new System.Drawing.Size(992, 626);
             this.tabView.TabIndex = 0;
             this.tabView.Text = "📋 View Data";
             // 
@@ -230,7 +327,7 @@
             this.tabInsert.Controls.Add(this.pnlInsert);
             this.tabInsert.Location = new System.Drawing.Point(4, 30);
             this.tabInsert.Name = "tabInsert";
-            this.tabInsert.Size = new System.Drawing.Size(192, 66);
+            this.tabInsert.Size = new System.Drawing.Size(992, 626);
             this.tabInsert.TabIndex = 1;
             this.tabInsert.Text = "➕ Insert";
             // 
@@ -276,7 +373,7 @@
             this.tabUpdate.Controls.Add(this.pnlUpdate);
             this.tabUpdate.Location = new System.Drawing.Point(4, 30);
             this.tabUpdate.Name = "tabUpdate";
-            this.tabUpdate.Size = new System.Drawing.Size(192, 66);
+            this.tabUpdate.Size = new System.Drawing.Size(992, 626);
             this.tabUpdate.TabIndex = 2;
             this.tabUpdate.Text = "✏️ Update / 🗑️ Delete";
             // 
@@ -337,7 +434,7 @@
             this.tabJoin.Controls.Add(this.pnlJoinTop);
             this.tabJoin.Location = new System.Drawing.Point(4, 30);
             this.tabJoin.Name = "tabJoin";
-            this.tabJoin.Size = new System.Drawing.Size(192, 66);
+            this.tabJoin.Size = new System.Drawing.Size(992, 626);
             this.tabJoin.TabIndex = 3;
             this.tabJoin.Text = "🔗 Join Queries";
             // 
@@ -417,6 +514,8 @@
             this.btnRunJoin.Text = "RUN QUERY";
             this.btnRunJoin.UseVisualStyleBackColor = false;
             this.btnRunJoin.Click += new System.EventHandler(this.btnRunJoin_Click);
+
+            
             // 
             // statusStrip1
             // 
@@ -459,7 +558,7 @@
             // 
             this.mainContainer.Panel2.Controls.Add(this.tabMain);
             this.mainContainer.Size = new System.Drawing.Size(1200, 664);
-            this.mainContainer.SplitterDistance = 967;
+            this.mainContainer.SplitterDistance = 200;
             this.mainContainer.TabIndex = 0;
             // 
             // Form1
@@ -495,6 +594,10 @@
             this.pnlJoinTop.ResumeLayout(false);
             this.pnlJoinTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numJoinParam)).EndInit();
+            this.tabInquiry.ResumeLayout(false);
+            this.pnlInquiryTop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)
+            (this.dgvInquiry)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.mainContainer.Panel1.ResumeLayout(false);
@@ -541,6 +644,12 @@
         private System.Windows.Forms.NumericUpDown numJoinParam;
         private System.Windows.Forms.Button btnRunJoin;
         private System.Windows.Forms.DataGridView dgvJoin;
+
+        private System.Windows.Forms.TabPage tabInquiry;
+        private System.Windows.Forms.Panel pnlInquiryTop;
+        private System.Windows.Forms.ComboBox cmbInquiry;
+        private System.Windows.Forms.Button btnRunInquiry;
+        private System.Windows.Forms.DataGridView dgvInquiry;
 
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;
